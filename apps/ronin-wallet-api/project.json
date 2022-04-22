@@ -1,0 +1,52 @@
+{
+  "root": "apps/ronin-wallet-api",
+  "sourceRoot": "apps/ronin-wallet-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/ronin-wallet-api",
+        "main": "apps/ronin-wallet-api/src/main.ts",
+        "tsConfig": "apps/ronin-wallet-api/tsconfig.app.json",
+        "assets": ["apps/ronin-wallet-api/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/ronin-wallet-api/src/environments/environment.ts",
+              "with": "apps/ronin-wallet-api/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "ronin-wallet-api:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/ronin-wallet-api/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/ronin-wallet-api"],
+      "options": {
+        "jestConfig": "apps/ronin-wallet-api/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
