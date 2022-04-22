@@ -1,4 +1,7 @@
 {
   "version": 2,
-  "projects": {}
+  "projects": {
+    "ronin-wallet": "apps/ronin-wallet",
+    "ronin-wallet-e2e": "apps/ronin-wallet-e2e"
+  }
 }

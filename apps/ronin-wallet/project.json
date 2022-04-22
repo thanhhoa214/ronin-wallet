@@ -1,0 +1,94 @@
+{
+  "projectType": "application",
+  "root": "apps/ronin-wallet",
+  "sourceRoot": "apps/ronin-wallet/src",
+  "prefix": "ronin",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/ronin-wallet",
+        "index": "apps/ronin-wallet/src/index.html",
+        "main": "apps/ronin-wallet/src/main.ts",
+        "polyfills": "apps/ronin-wallet/src/polyfills.ts",
+        "tsConfig": "apps/ronin-wallet/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/ronin-wallet/src/favicon.ico",
+          "apps/ronin-wallet/src/assets"
+        ],
+        "styles": ["apps/ronin-wallet/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/ronin-wallet/src/environments/environment.ts",
+              "with": "apps/ronin-wallet/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "ronin-wallet:build:production"
+        },
+        "development": {
+          "browserTarget": "ronin-wallet:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "ronin-wallet:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/ronin-wallet/**/*.ts",
+          "apps/ronin-wallet/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/ronin-wallet"],
+      "options": {
+        "jestConfig": "apps/ronin-wallet/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
