@@ -3,6 +3,7 @@
   "projects": {
     "ronin-wallet": "apps/ronin-wallet",
     "ronin-wallet-api": "apps/ronin-wallet-api",
-    "ronin-wallet-e2e": "apps/ronin-wallet-e2e"
+    "ronin-wallet-e2e": "apps/ronin-wallet-e2e",
+    "ronin-wallet-types": "libs/ronin-wallet/types"
   }
 }

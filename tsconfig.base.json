@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@ronin-wallet/types": ["libs/ronin-wallet/types/src/index.ts"],
+      "@ronin-wallet/types/*": ["libs/ronin-wallet/types/src/lib/*"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

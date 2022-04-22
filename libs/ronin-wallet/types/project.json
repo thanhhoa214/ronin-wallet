@@ -1,0 +1,23 @@
+{
+  "root": "libs/ronin-wallet/types",
+  "sourceRoot": "libs/ronin-wallet/types/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/ronin-wallet/types/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/ronin-wallet/types"],
+      "options": {
+        "jestConfig": "libs/ronin-wallet/types/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["ronin-wallet"]
+}
