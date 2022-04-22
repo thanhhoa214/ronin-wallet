@@ -1,17 +1,22 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
 import * as express from 'express';
 import * as cors from 'cors';
+import {
+  CurrenciesResponse,
+  LoginRequest,
+  LoginResponse,
+} from '@ronin-wallet/types';
+import { currencies, user } from './mock-data';
 
 const app = express();
 
 app.use(cors());
 
-app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to ronin-wallet-api!' });
+app.post<LoginRequest, LoginResponse>('/login', (_, res) => {
+  res.send({ data: user });
+});
+
+app.get<void, CurrenciesResponse>('/currencies', (_, res) => {
+  res.send({ data: currencies });
 });
 
 const port = process.env.port || 3333;
