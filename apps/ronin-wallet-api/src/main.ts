@@ -4,8 +4,11 @@
  */
 
 import * as express from 'express';
+import * as cors from 'cors';
 
 const app = express();
+
+app.use(cors());
 
 app.get('/api', (req, res) => {
   res.send({ message: 'Welcome to ronin-wallet-api!' });
