@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { rootRoutes } from './util/root.routes';
 import { NzRootModule } from './modules/base/ng-zorro-antd/nz-root.module';
+import { StateManagementModule } from './modules/base/state-management.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +17,7 @@ import { NzRootModule } from './modules/base/ng-zorro-antd/nz-root.module';
     HttpClientModule,
     RouterModule.forRoot(rootRoutes),
     NzRootModule,
+    StateManagementModule,
   ],
   bootstrap: [AppComponent],
 })
