@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { NzMessageService } from 'ng-zorro-antd/message';
@@ -13,7 +13,7 @@ import { Login } from '../../data-access';
   providers: [DestroyService],
 })
 export class LoginComponent {
-  passwordControl = new FormControl('');
+  passwordControl = new FormControl('', Validators.required);
 
   isPasswordVisible = false;
   isLoggingIn = false;
@@ -25,7 +25,9 @@ export class LoginComponent {
     private router: Router
   ) {}
 
-  onSubmit() {
+  onSubmit(event: Event) {
+    event.preventDefault();
+
     this.passwordControl.markAsDirty();
     this.passwordControl.updateValueAndValidity();
     if (!this.passwordControl.valid) return;
@@ -43,6 +45,7 @@ export class LoginComponent {
         })
       )
       .subscribe(() => {
+        this.isLoggingIn = false;
         this.router.navigateByUrl('/');
       });
   }

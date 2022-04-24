@@ -4,9 +4,10 @@ import { LoginComponent } from './login.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzSharedModule } from '../../../base/ng-zorro-antd/shared.module';
 
-const nzModules = [NzInputModule];
+const nzModules = [NzInputModule, NzFormModule];
 
 @NgModule({
   declarations: [LoginComponent],

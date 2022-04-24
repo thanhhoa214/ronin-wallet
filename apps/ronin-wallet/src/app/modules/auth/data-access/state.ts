@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { STATE_NAME, INITIAL_STATE, StateModel } from './state.model';
 import { Login, Logout } from './actions';
 import { Router } from '@angular/router';
@@ -29,8 +29,7 @@ export class AuthState {
   constructor(
     private authService: AuthService,
     private nzModalService: NzModalService,
-    private router: Router,
-    private store: Store
+    private router: Router
   ) {}
 
   @Action(Login, { cancelUncompleted: true })

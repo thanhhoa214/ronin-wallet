@@ -1,11 +1,13 @@
-<main class="h-screen max-w-sm mx-auto text-center p-5 flex flex-col justify-center">
+<main
+  class="h-screen max-w-sm mx-auto text-center p-5 flex flex-col justify-center"
+>
   <header class="pt-8 pb-6 bg-no-repeat">
     <img src="assets/logo.svg" alt="Ronin Wallet" class="mx-auto" />
   </header>
   <h1 class="mb-2">Ronin Wallet</h1>
   <p class="mb-6">Your Digital Passport</p>
 
-  <form (submit)="onSubmit()">
+  <form (submit)="onSubmit($event)">
     <label
       for="password"
       class="block uppercase text-[10px] text-left leading-4 mb-1"
@@ -15,6 +17,7 @@
       <input
         [formControl]="passwordControl"
         [type]="isPasswordVisible ? 'text' : 'password'"
+        autofocus
         nz-input
         placeholder="Please enter your passphrase"
         id="password"
@@ -29,7 +32,13 @@
       </ng-template>
     </nz-input-group>
 
-    <button nz-button nzType="primary" nzSize="large" class="w-24">
+    <button
+      nz-button
+      [nzLoading]="isLoggingIn"
+      nzType="primary"
+      nzSize="large"
+      class="min-w-[88px] transition-transform"
+    >
       Unlock
     </button>
   </form>
