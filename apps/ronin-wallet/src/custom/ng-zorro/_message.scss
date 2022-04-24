@@ -1,0 +1,32 @@
+.ant-message-notice {
+  @apply text-right text-[15px] py-1;
+
+  .anticon-info-circle {
+    @apply text-primary-400;
+  }
+
+  .ant-message-notice-content {
+    @apply p-0 shadow-none bg-transparent;
+  }
+
+  .ant-message-custom-content {
+    @apply px-4 py-2 shadow-xl rounded-md text-white;
+
+    .anticon {
+      @apply text-white text-xl leading-none;
+      vertical-align: -0.2em;
+    }
+
+    &.ant-message-success {
+      @apply bg-green-600;
+    }
+
+    &.ant-message-info {
+      @apply bg-primary-400;
+    }
+
+    &.ant-message-error {
+      @apply bg-red-600;
+    }
+  }
+}

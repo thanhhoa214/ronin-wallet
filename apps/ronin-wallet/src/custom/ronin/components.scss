@@ -1,0 +1,32 @@
+.kps-link {
+  @apply hover:underline hover:font-medium underline-offset-2;
+}
+
+.detail-image-wrapper {
+  @apply w-40 h-40 rounded-md overflow-hidden border border-gray-200;
+
+  &.md {
+    @apply w-20 h-20;
+  }
+
+  &.sm {
+    @apply w-10 h-10;
+  }
+}
+
+.rounded-icon {
+  @apply text-[1.2rem] rounded-full p-1.5 bg-white bg-opacity-70;
+  @apply hover:bg-opacity-100;
+}
+
+.section-card {
+  @apply bg-gray-50 p-4 pt-6 border border-gray-200 rounded-md relative;
+
+  .section-card-title {
+    @apply inline-block py-1 px-3 bg-white text-gray-600 border border-solid border-gray-200 rounded-lg absolute -top-4 left-4;
+  }
+}
+
+.break-word {
+  word-break: break-word;
+}

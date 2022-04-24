@@ -1,0 +1,19 @@
+.ant-modal.confirm-dialog {
+  .ant-modal-body {
+    @apply pb-0;
+  }
+
+  .ant-modal-footer {
+    @apply flex flex-row-reverse space-x-3 py-4;
+
+    .ant-btn {
+      min-width: 8rem;
+      height: 2.5rem;
+      @apply text-base;
+
+      &:not(.ant-btn-primary) {
+        @apply ml-3 bg-gray-300 border hover:bg-gray-400 border-gray-200 text-white;
+      }
+    }
+  }
+}

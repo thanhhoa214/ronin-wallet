@@ -1,0 +1,54 @@
+// Resource: https://gist.github.com/spemer/a0e218bbb45433bd611e68446523a00b
+/* Customize website's scrollbar like Mac OS
+Not supports in Firefox and IE */
+
+/* total width */
+*::-webkit-scrollbar {
+  @apply bg-gray-100;
+  width: 5px;
+  height: 5px;
+  // @apply dark:bg-gray-900;
+}
+
+/* background of the scrollbar except button or resizer */
+*::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+  // @apply dark:bg-gray-900;
+}
+
+/* scrollbar itself */
+*::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 transition-colors;
+  @apply rounded-full;
+  // @apply dark:bg-gray-700;
+  // @apply dark:border-gray-900;
+
+  &:hover {
+    @apply bg-gray-400;
+  }
+}
+
+/* set button(top and bottom of the scrollbar) */
+*::-webkit-scrollbar-button {
+  @apply hidden;
+}
+
+.hover\:scrollbar-show {
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar,
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-thumb {
+    @apply bg-white;
+  }
+  
+  &:hover {
+    &::-webkit-scrollbar,
+    &::-webkit-scrollbar-track {
+      @apply bg-gray-100;
+    }
+    &::-webkit-scrollbar-thumb {
+      @apply bg-gray-300;
+    }
+  }
+}
