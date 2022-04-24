@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { rootRoutes } from './util/root.routes';
+import { NzRootModule } from './modules/base/ng-zorro-antd/nz-root.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,8 +15,8 @@ import { rootRoutes } from './util/root.routes';
     BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(rootRoutes),
+    NzRootModule,
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

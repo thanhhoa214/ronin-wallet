@@ -16,9 +16,17 @@
         "inlineStyleLanguage": "scss",
         "assets": [
           "apps/ronin-wallet/src/favicon.ico",
-          "apps/ronin-wallet/src/assets"
+          "apps/ronin-wallet/src/assets",
+          {
+            "glob": "**/*",
+            "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+            "output": "/assets/"
+          }
         ],
-        "styles": ["apps/ronin-wallet/src/styles.scss"],
+        "styles": [
+          "apps/ronin-wallet/src/theme.less",
+          "apps/ronin-wallet/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {
