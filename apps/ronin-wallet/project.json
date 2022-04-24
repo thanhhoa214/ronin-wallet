@@ -3,6 +3,14 @@
   "root": "apps/ronin-wallet",
   "sourceRoot": "apps/ronin-wallet/src",
   "prefix": "ronin",
+  "schematics": {
+    "@schematics/angular:component": {
+      "style": "scss",
+      "skipTests": true,
+      "prefix": "ronin",
+      "displayBlock": true
+    }
+  },
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",

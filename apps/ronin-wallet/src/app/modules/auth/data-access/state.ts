@@ -34,17 +34,17 @@ export class AuthState {
 
   @Action(Login, { cancelUncompleted: true })
   Login({ patchState }: StateContext<StateModel>, { params }: Login) {
+    console.warn(params);
+    const errorMessage = 'Login has been errored. Please try again later';
     return this.authService.login(params).pipe(
       tap(({ data: user }) => {
-        if (!user)
-          throw new Error('Login has been errored. Please try again later');
+        if (!user) throw new Error(errorMessage);
         patchState({ user });
       }),
-      catchError(() =>
-        throwError(
-          () => new Error('Đăng nhập thất bại, thông tin xác thực chưa đúng!')
-        )
-      )
+      catchError((error) => {
+        console.warn(error);
+        return throwError(() => new Error(errorMessage));
+      })
     );
   }
 

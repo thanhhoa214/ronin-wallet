@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzSharedModule } from '../../../base/ng-zorro-antd/shared.module';
+import { AuthDataAccessModule } from '../../data-access';
 
 const nzModules = [NzInputModule, NzFormModule];
 
@@ -17,6 +18,7 @@ const nzModules = [NzInputModule, NzFormModule];
     RouterModule.forChild([{ path: '', component: LoginComponent }]),
     nzModules,
     NzSharedModule,
+    AuthDataAccessModule,
   ],
 })
 export class LoginModule {}
