@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "npx nx run-many --target=serve --projects=ronin-wallet,ronin-wallet-api",
+    "start": "port=3333 npx nx run-many --target=serve --projects=ronin-wallet,ronin-wallet-api",
     "build": "nx build",
     "test": "nx test",
     "postinstall": "ngcc --properties es2015 browser module main"

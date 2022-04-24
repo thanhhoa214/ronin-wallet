@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login.component';
 import { RouterModule } from '@angular/router';
-import { PasswordModule } from 'primeng/password';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzSharedModule } from '../../../base/ng-zorro-antd/shared.module';
 
-const primeModules = [PasswordModule];
+const nzModules = [NzInputModule];
 
 @NgModule({
   declarations: [LoginComponent],
@@ -13,7 +14,8 @@ const primeModules = [PasswordModule];
     CommonModule,
     ReactiveFormsModule,
     RouterModule.forChild([{ path: '', component: LoginComponent }]),
-    primeModules,
+    nzModules,
+    NzSharedModule,
   ],
 })
 export class LoginModule {}

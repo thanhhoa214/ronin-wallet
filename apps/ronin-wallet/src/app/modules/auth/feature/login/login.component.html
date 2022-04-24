@@ -1,17 +1,36 @@
-<main class="max-w-sm mx-auto text-center">
-  <img src="assets/logo.svg" alt="Ronin Wallet" class="mx-auto" />
-  <h1>Ronin Wallet</h1>
-  <p>Your Digital Passport</p>
+<main class="h-screen max-w-sm mx-auto text-center p-5 flex flex-col justify-center">
+  <header class="pt-8 pb-6 bg-no-repeat">
+    <img src="assets/logo.svg" alt="Ronin Wallet" class="mx-auto" />
+  </header>
+  <h1 class="mb-2">Ronin Wallet</h1>
+  <p class="mb-6">Your Digital Passport</p>
 
-  <div class="text-left">
-    <label for="password" class="block uppercase">Enter password</label>
-    <input
-      [formControl]="passwordControl"
-      pPassword
-      [feedback]="false"
-      type="password"
-      id="password"
-      class="w-full"
-    />
-  </div>
+  <form (submit)="onSubmit()">
+    <label
+      for="password"
+      class="block uppercase text-[10px] text-left leading-4 mb-1"
+      >Enter password</label
+    >
+    <nz-input-group [nzSuffix]="suffixTemplate" nzSize="large" class="mb-6">
+      <input
+        [formControl]="passwordControl"
+        [type]="isPasswordVisible ? 'text' : 'password'"
+        nz-input
+        placeholder="Please enter your passphrase"
+        id="password"
+      />
+      <ng-template #suffixTemplate>
+        <i
+          nz-icon
+          [nzType]="isPasswordVisible ? 'eye-invisible' : 'eye'"
+          (click)="isPasswordVisible = !isPasswordVisible"
+          class="!text-gray-500"
+        ></i>
+      </ng-template>
+    </nz-input-group>
+
+    <button nz-button nzType="primary" nzSize="large" class="w-24">
+      Unlock
+    </button>
+  </form>
 </main>
