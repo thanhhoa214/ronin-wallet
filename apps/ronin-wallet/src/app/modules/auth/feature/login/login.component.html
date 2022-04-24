@@ -1,0 +1,17 @@
+<main class="max-w-sm mx-auto text-center">
+  <img src="assets/logo.svg" alt="Ronin Wallet" class="mx-auto" />
+  <h1>Ronin Wallet</h1>
+  <p>Your Digital Passport</p>
+
+  <div class="text-left">
+    <label for="password" class="block uppercase">Enter password</label>
+    <input
+      [formControl]="passwordControl"
+      pPassword
+      [feedback]="false"
+      type="password"
+      id="password"
+      class="w-full"
+    />
+  </div>
+</main>
