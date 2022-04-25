@@ -5,6 +5,7 @@ import { HomeComponent } from './home.component';
 import { NzSharedModule } from '../../../base/ng-zorro-antd/shared.module';
 import { CreditCardModule } from '../../ui/credit-card/credit-card.module';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import { CurrencyItemModule } from '../../../../ui/currency-item/currency-item.module';
 
 const nzModules = [NzSkeletonModule];
 
@@ -15,6 +16,7 @@ const nzModules = [NzSkeletonModule];
     RouterModule.forChild([{ path: '', component: HomeComponent }]),
     NzSharedModule,
     CreditCardModule,
+    CurrencyItemModule,
     nzModules,
   ],
 })

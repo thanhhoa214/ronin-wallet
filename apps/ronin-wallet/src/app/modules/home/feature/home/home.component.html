@@ -19,8 +19,8 @@
   <main class="flex flex-wrap justify-center gap-8 sm:flex-nowrap">
     <section class="max-w-sm">
       <ronin-credit-card
-        address="7300 3777 3888 3334"
-        [balance]="1000"
+        [address]="user.walletAddress"
+        [balance]="user.currencies[0].balance"
         class="mb-7"
       ></ronin-credit-card>
 
@@ -33,7 +33,12 @@
         </li>
 
         <li>
-          <button nz-button nzType="text" nzSize="large">
+          <button
+            nz-button
+            nzType="text"
+            nzSize="large"
+            routerLink="transaction/send"
+          >
             <i nz-icon nzType="icons:send"></i>
           </button>
           <p>Send</p>
@@ -51,27 +56,12 @@
     <section class="w-full">
       <h3>Assets</h3>
       <ol>
-        <li
-          class="flex items-center px-5 py-4 mb-3 space-x-4 bg-gray-50 rounded-lg"
+        <ronin-currency-item
           *ngFor="let currency of user.currencies"
+          [currency]="currency"
+          class="bg-gray-50 rounded-lg mb-3"
         >
-          <img
-            src="assets/currencies/{{ currency.currency.code | lowercase }}.png"
-            alt="{{ currency.currency.code }} currency"
-            class="w-8 h-8"
-          />
-          <div>
-            <strong class="leading-5 mb-1">
-              {{ currency.balance | number: '1.0-2':'en-US' }}
-              {{ currency.currency.code }}
-            </strong>
-            <p class="text-gray-500">
-              {{
-                currency.balance | roninCurrency: currency.currency.code | async
-              }}
-            </p>
-          </div>
-        </li>
+        </ronin-currency-item>
       </ol>
     </section>
   </main>
