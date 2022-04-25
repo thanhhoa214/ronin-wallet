@@ -23,8 +23,12 @@
         "tsConfig": "apps/ronin-wallet/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
-          "apps/ronin-wallet/src/favicon.ico",
           "apps/ronin-wallet/src/assets",
+          {
+            "glob": "**/*",
+            "input": "apps/ronin-wallet/src/assets/favicon-pack",
+            "output": "/"
+          },
           {
             "glob": "**/*",
             "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
