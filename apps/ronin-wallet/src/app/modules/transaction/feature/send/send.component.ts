@@ -9,18 +9,33 @@ import { AuthState } from '../../../auth/data-access';
 import { CurrencySelectComponent } from '../../ui/currency-select/currency-select.component';
 
 @Component({
-  selector: 'ronin-send',
   templateUrl: './send.component.html',
   styleUrls: ['./send.component.scss'],
   providers: [DestroyService],
 })
 export class SendComponent implements OnInit {
   form = this.fb.group({
-    to: ['', Validators.required],
-    currency: ['', Validators.required],
-    amount: [0, [Validators.required, Validators.min(0)]],
+    to: ['', [Validators.required, Validators.minLength(16)]],
+    amount: [0],
   });
   user?: User;
+
+  get currency(): UserCurrency | undefined {
+    return this._currency;
+  }
+  set currency(value: UserCurrency | undefined) {
+    if (value) {
+      this._currency = value;
+      this.form
+        .get('amount')
+        ?.setValidators([
+          Validators.required,
+          Validators.min(0),
+          Validators.max(value.balance),
+        ]);
+    }
+  }
+  private _currency?: UserCurrency;
 
   constructor(
     private fb: FormBuilder,
@@ -37,13 +52,14 @@ export class SendComponent implements OnInit {
         takeUntil(this.destroy$)
       )
       .subscribe((user) => {
-        this.user = user;
+        if (user) {
+          this.user = user;
+          this.currency = user.currencies[0];
 
-        if (user)
           this.form.patchValue({
             from: user.walletAddress,
-            currency: user.currencies[0].currency.code,
           });
+        }
       });
   }
 
@@ -52,20 +68,29 @@ export class SendComponent implements OnInit {
       .create<CurrencySelectComponent, UserCurrency>({
         nzContent: CurrencySelectComponent,
         nzComponentParams: {
-          selectedCurrencyCode: this.form.value.currency,
+          selectedCurrencyCode: this.currency?.currency.code,
         },
         nzFooter: null,
         nzWidth: '336px',
-        nzBodyStyle: {
-          padding: '0',
-        },
+        nzBodyStyle: { padding: '0' },
       })
       .afterClose.pipe(
-        filter((currency) => !!currency),
-        filter((c) => this.form.get('currency')?.value !== c?.currency.code)
+        filter((c) => !!c),
+        filter((c) => this.currency?.currency.code !== c?.currency.code)
       )
       .subscribe((currency) => {
-        this.form.get('currency')?.patchValue(currency.currency.code);
+        this.currency = currency;
       });
+  }
+
+  onSubmit() {
+    for (const i in this.form.controls) {
+      this.form.controls[i].markAsDirty();
+      this.form.controls[i].updateValueAndValidity();
+    }
+    if (!this.form.valid) return;
+    const { to, amount } = this.form.value;
+
+    console.log(to, amount);
   }
 }

@@ -9,6 +9,8 @@ import { rootRoutes } from './util/root.routes';
 import { NzRootModule } from './modules/base/ng-zorro-antd/nz-root.module';
 import { StateManagementModule } from './modules/base/state-management.module';
 import { CoreDataAccessModule } from './data-access';
+import { AuthDataAccessModule } from './modules/auth/data-access';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,8 +20,12 @@ import { CoreDataAccessModule } from './data-access';
     HttpClientModule,
     RouterModule.forRoot(rootRoutes),
     NzRootModule,
+
     StateManagementModule,
+    AuthDataAccessModule,
     CoreDataAccessModule,
+
+    NgxMaskModule.forRoot(),
   ],
   bootstrap: [AppComponent],
 })

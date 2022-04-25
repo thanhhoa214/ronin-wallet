@@ -9,31 +9,54 @@
 </header>
 
 <main class="max-w-sm mx-auto p-5">
-  <form nz-form nzLayout="vertical" [formGroup]="form" *ngIf="user">
+  <form
+    *ngIf="user"
+    nz-form
+    nzLayout="vertical"
+    [formGroup]="form"
+    class="mb-6"
+    (ngSubmit)="onSubmit()"
+  >
     <nz-form-item>
       <nz-form-label nzFor="my-address">From</nz-form-label>
       <nz-form-control>
-        <nz-input-group nzPrefix=" " nzSize="large">
+        <nz-input-group [nzPrefix]="myWalletPrefix" nzSize="large">
           <input
             nz-input
             id="my-address"
-            value="My Wallet ({{ user.walletAddress }})"
+            value=" ({{ user.walletAddress | roninAddressTruncate }})"
+            disabled
           />
+          <ng-template #myWalletPrefix>
+            <strong class="font-semibold text-sm">My Wallet</strong>
+          </ng-template>
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
       <nz-form-label nzFor="receiver-address">To</nz-form-label>
-      <nz-form-control>
+      <nz-form-control [nzErrorTip]="receiverTemplate">
         <nz-input-group nzPrefix=" " nzSize="large">
           <input
             formControlName="to"
             nz-input
             id="receiver-address"
             nzSize="large"
+            placeholder="Receiver wallet address"
+            mask="0000 0000 0000 0000"
           />
         </nz-input-group>
+        <ng-template #receiverTemplate let-control>
+          <div class="text-xs pl-2 mt-0.5">
+            <p *ngIf="control.hasError('required')">
+              Wallet address is required
+            </p>
+            <p *ngIf="control.hasError('minlength')">
+              Wallet address must be exact <strong>16 characters </strong>long
+            </p>
+          </div>
+        </ng-template>
       </nz-form-control>
     </nz-form-item>
 
@@ -46,14 +69,19 @@
           nzSize="large"
           (click)="onOpenCurrencySelect()"
         >
-          <input formControlName="currency" readonly nz-input id="currency" />
+          <input
+            readonly
+            nz-input
+            id="currency"
+            [value]="currency?.currency?.code"
+          />
 
           <ng-template #imageTemplate>
             <img
               src="assets/currencies/{{
-                form.get('currency')?.value | lowercase
+                currency?.currency?.code | lowercase
               }}.png"
-              alt="{{ form.get('currency')?.value }} currency"
+              alt="{{ currency?.currency?.code }} currency"
               class="w-8 h-8 mr-2"
             />
           </ng-template>
@@ -73,11 +101,20 @@
       <nz-form-label nzFor="amount"> Amount </nz-form-label>
       <span
         class="text-gray-900 font-semibold text-xxs leading-5 uppercase absolute right-2"
-        >Available: 50 EUR</span
+        >Available: {{ currency?.balance | number: '1.0-2':'en-US' }}
+        {{ currency?.currency?.code }}</span
       >
-      <nz-form-control>
+      <nz-form-control [nzErrorTip]="amountTemplate">
         <nz-input-group [nzSuffix]="maxButtonTemplate" nzSize="large">
-          <input formControlName="amount" nz-input id="amount" />
+          <input
+            formControlName="amount"
+            nz-input
+            type="text"
+            id="amount"
+            placeholder="Enter transfer amount"
+            mask="separator.4"
+            thousandSeparator=","
+          />
 
           <ng-template #maxButtonTemplate>
             <button
@@ -86,9 +123,26 @@
               nzSize="small"
               type="button"
               class="rounded-lg text-xs font-semibold text-gray-500"
+              (click)="form.get('amount')?.setValue(currency?.balance)"
             >
               MAX
             </button>
+          </ng-template>
+
+          <ng-template #amountTemplate let-control>
+            <div class="text-xs pl-2 mt-0.5">
+              <p *ngIf="control.hasError('required')">
+                Transfer amount is required
+              </p>
+              <p *ngIf="control.hasError('max')">
+                You only has
+                <strong
+                  >{{ currency?.balance | number: '1.0-2':'en-US' }}
+                  {{ currency?.currency?.code }}</strong
+                >
+                in your balance
+              </p>
+            </div>
           </ng-template>
         </nz-input-group>
       </nz-form-control>
@@ -96,7 +150,13 @@
   </form>
 
   <footer class="flex justify-center gap-4">
-    <button nz-button nzType="text" nzSize="large" class="w-1/2" routerLink="/">
+    <button
+      routerLink="/"
+      nz-button
+      nzType="text"
+      nzSize="large"
+      class="w-1/2 text-primary-500 hover:text-primary-400"
+    >
       Cancel
     </button>
     <button
@@ -104,6 +164,7 @@
       nzType="primary"
       nzSize="large"
       class="w-1/2 bg-ronin-gradient"
+      (click)="onSubmit()"
     >
       Send
     </button>

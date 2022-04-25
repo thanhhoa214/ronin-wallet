@@ -7,6 +7,6 @@ import { AutoTitleService } from './util/services/auto-title.service';
 })
 export class AppComponent {
   constructor(autoTitleService: AutoTitleService) {
-    autoTitleService.setupAutoTitleListener({ postfix: ' | KPS' });
+    autoTitleService.setupAutoTitleListener({ postfix: ' | Ronin' });
   }
 }
