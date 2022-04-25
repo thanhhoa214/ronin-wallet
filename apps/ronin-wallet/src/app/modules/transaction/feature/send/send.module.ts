@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CurrencySelectModule } from '../../ui/currency-select/currency-select.module';
 import { AddressTruncatePipeModule } from '../../util/pipes/address-truncate/address-truncate.module';
 import { NgxMaskModule } from 'ngx-mask';
+import { TransactionDataAccessModule } from '../../data-access';
 
 const nzModules = [NzFormModule, NzInputModule, NzInputNumberModule];
 
@@ -23,6 +24,7 @@ const nzModules = [NzFormModule, NzInputModule, NzInputNumberModule];
     RouterModule.forChild([{ path: '', component: SendComponent }]),
     CurrencySelectModule,
     AddressTruncatePipeModule,
+    TransactionDataAccessModule,
     nzModules,
   ],
 })

@@ -6,6 +6,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { takeUntil, filter } from 'rxjs';
 import { DestroyService } from '../../../../util/services/destroy.service';
 import { AuthState } from '../../../auth/data-access';
+import { Send } from '../../data-access';
 import { CurrencySelectComponent } from '../../ui/currency-select/currency-select.component';
 
 @Component({
@@ -88,9 +89,15 @@ export class SendComponent implements OnInit {
       this.form.controls[i].markAsDirty();
       this.form.controls[i].updateValueAndValidity();
     }
-    if (!this.form.valid) return;
+    if (!this.form.valid || !this.currency) return;
     const { to, amount } = this.form.value;
 
-    console.log(to, amount);
+    this.store.dispatch(
+      new Send({
+        receiverAddress: to,
+        amount,
+        currencyCode: this.currency.currency.code,
+      })
+    );
   }
 }

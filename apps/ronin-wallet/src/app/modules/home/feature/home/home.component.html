@@ -20,7 +20,7 @@
     <section class="max-w-sm">
       <ronin-credit-card
         [address]="user.walletAddress"
-        [balance]="user.currencies[0].balance"
+        [balance]="(balance$ | async) || 0"
         class="mb-7"
       ></ronin-credit-card>
 

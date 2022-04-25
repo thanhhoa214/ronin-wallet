@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { STATE_NAME, INITIAL_STATE, StateModel } from './state.model';
-import { Login, Logout } from './actions';
+import { Login, Logout, SaveProfile } from './actions';
 import { Router } from '@angular/router';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -65,5 +65,10 @@ export class AuthState {
         nzOnOk: successCallback,
       });
     return successCallback();
+  }
+
+  @Action(SaveProfile)
+  SaveProfile({ patchState }: StateContext<StateModel>, { user }: SaveProfile) {
+    patchState({ user });
   }
 }
