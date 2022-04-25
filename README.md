@@ -6,7 +6,7 @@
 ## Technologies
 
 ### FE App
-- [Angular](https://angular.io/) (v12+)
+- [Angular](https://angular.io/) (v13+)
 - [ng-zorro](https://ng.ant.design/) for utilizing beautiful, on-the-fly and rich UI library.
 - [TailwindCSS](https://tailwindcss.com/) for quickly customizing through utility-first classes.
 - [NGXS](https://www.ngxs.io/) for state management.
