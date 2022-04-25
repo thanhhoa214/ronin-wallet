@@ -1,0 +1,111 @@
+<header class="py-4 mb-1 text-center shadow-sm relative">
+  <i
+    nz-icon
+    nzType="icons:chevron-left"
+    class="text-gray-800 text-2xl leading-5 absolute left-4 top-1/2 -translate-y-1/2"
+    routerLink="/"
+  ></i>
+  <strong class="font-semibold">Send Assets</strong>
+</header>
+
+<main class="max-w-sm mx-auto p-5">
+  <form nz-form nzLayout="vertical" [formGroup]="form" *ngIf="user">
+    <nz-form-item>
+      <nz-form-label nzFor="my-address">From</nz-form-label>
+      <nz-form-control>
+        <nz-input-group nzPrefix=" " nzSize="large">
+          <input
+            nz-input
+            id="my-address"
+            value="My Wallet ({{ user.walletAddress }})"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="receiver-address">To</nz-form-label>
+      <nz-form-control>
+        <nz-input-group nzPrefix=" " nzSize="large">
+          <input
+            formControlName="to"
+            nz-input
+            id="receiver-address"
+            nzSize="large"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzFor="currency">Asset</nz-form-label>
+      <nz-form-control>
+        <nz-input-group
+          [nzPrefix]="imageTemplate"
+          [nzSuffix]="stackIconTemplate"
+          nzSize="large"
+          (click)="onOpenCurrencySelect()"
+        >
+          <input formControlName="currency" readonly nz-input id="currency" />
+
+          <ng-template #imageTemplate>
+            <img
+              src="assets/currencies/{{
+                form.get('currency')?.value | lowercase
+              }}.png"
+              alt="{{ form.get('currency')?.value }} currency"
+              class="w-8 h-8 mr-2"
+            />
+          </ng-template>
+
+          <ng-template #stackIconTemplate>
+            <i
+              nz-icon
+              nzType="icons:stack"
+              class="text-2xl leading-4 text-gray-600"
+            ></i>
+          </ng-template>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item class="relative">
+      <nz-form-label nzFor="amount"> Amount </nz-form-label>
+      <span
+        class="text-gray-900 font-semibold text-xxs leading-5 uppercase absolute right-2"
+        >Available: 50 EUR</span
+      >
+      <nz-form-control>
+        <nz-input-group [nzSuffix]="maxButtonTemplate" nzSize="large">
+          <input formControlName="amount" nz-input id="amount" />
+
+          <ng-template #maxButtonTemplate>
+            <button
+              nz-button
+              nzType="text"
+              nzSize="small"
+              type="button"
+              class="rounded-lg text-xs font-semibold text-gray-500"
+            >
+              MAX
+            </button>
+          </ng-template>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+
+  <footer class="flex justify-center gap-4">
+    <button nz-button nzType="text" nzSize="large" class="w-1/2" routerLink="/">
+      Cancel
+    </button>
+    <button
+      nz-button
+      nzType="primary"
+      nzSize="large"
+      class="w-1/2 bg-ronin-gradient"
+    >
+      Send
+    </button>
+  </footer>
+</main>

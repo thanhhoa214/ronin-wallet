@@ -1,9 +1,13 @@
+.ant-btn {
+  @apply font-semibold;
+}
+
 .ant-btn-primary {
   @apply border-none bg-ronin-gradient;
 }
 
 .ant-btn-text {
-  @apply bg-gray-50;
+  @apply bg-slate-100;
 }
 
 .ant-btn .anticon-loading {

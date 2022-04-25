@@ -27,6 +27,9 @@ module.exports = {
           900: '#020D1A',
         },
       },
+      fontSize: {
+        xxs: '10px',
+      },
       backgroundImage: {
         'ronin-gradient': 'linear-gradient(to left, #1c94f4, #1273ea)',
       },

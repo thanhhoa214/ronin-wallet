@@ -1,0 +1,11 @@
+.ant-form-item-label {
+  @apply leading-4 #{!important};
+
+  label {
+    @apply text-gray-700 uppercase text-[10px] indent-2;
+  }
+}
+
+.ant-input-lg {
+  @apply text-sm;
+}

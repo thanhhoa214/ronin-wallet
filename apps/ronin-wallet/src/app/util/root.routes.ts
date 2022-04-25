@@ -4,12 +4,17 @@ import {
   IsLoggedInGuard,
   IsNotLoggedInGuard,
 } from '../modules/auth/util/guards';
+import { transactionRoutes } from '../modules/transaction/util/transaction.routes';
 
 export const rootRoutes: Route[] = [
   {
     path: 'auth',
     children: authRoutes,
     canActivate: [IsNotLoggedInGuard],
+  },
+  {
+    path: 'transaction',
+    children: transactionRoutes,
   },
   {
     path: '',
