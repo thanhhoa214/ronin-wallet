@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { rootRoutes } from './util/root.routes';
 import { NzRootModule } from './modules/base/ng-zorro-antd/nz-root.module';
 import { StateManagementModule } from './modules/base/state-management.module';
+import { CoreDataAccessModule } from './data-access';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { StateManagementModule } from './modules/base/state-management.module';
     RouterModule.forRoot(rootRoutes),
     NzRootModule,
     StateManagementModule,
+    CoreDataAccessModule,
   ],
   bootstrap: [AppComponent],
 })
