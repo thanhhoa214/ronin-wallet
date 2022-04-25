@@ -18,5 +18,6 @@ export const rootRoutes: Route[] = [
         (m) => m.HomeModule
       ),
     canActivate: [IsLoggedInGuard],
+    data: { title: 'Home' },
   },
 ];

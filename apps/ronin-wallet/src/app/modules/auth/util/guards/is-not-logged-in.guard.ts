@@ -9,7 +9,6 @@ export class IsNotLoggedInGuard implements CanActivate {
 
   canActivate() {
     const isLoggedIn = this.store.selectSnapshot(AuthState.isLoggedIn);
-    console.log(isLoggedIn);
 
     if (isLoggedIn) this.router.navigateByUrl('/');
     return !isLoggedIn;
