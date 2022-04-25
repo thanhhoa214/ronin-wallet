@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "start": "port=3333 npx nx run-many --target=serve --projects=ronin-wallet,ronin-wallet-api",
-    "build": "nx build",
+    "build": "nx build --project=ronin-wallet-api",
+    "start:api": "node dist/ronin-wallet-api/main.js",
     "test": "nx test",
     "postinstall": "ngcc --properties es2015 browser module main"
   },
