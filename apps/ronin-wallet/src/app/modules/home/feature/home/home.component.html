@@ -1,58 +1,81 @@
-<header class="flex justify-between mb-5">
-  <button nz-button nzType="text" class="font-bold space-x-3">
-    <span
-      class="w-2 h-2 rounded-full inline-block bg-primary-500 mb-[1px]"
-    ></span>
-    Ronin Wallet
-  </button>
-  <button
-    nz-button
-    nzType="text"
-    class="font-bold space-x-3 icon-large"
-    (click)="onLogout()"
-  >
-    <i nz-icon nzType="icons:person" class="text-primary-500"></i>
-  </button>
-</header>
-
-<ronin-credit-card
-  address="7300 3777 3888 3334"
-  [balance]="1000"
-  class="mb-7"
-></ronin-credit-card>
-
-<ul class="actions flex justify-center space-x-4">
-  <li class="disabled">
-    <button nz-button nzType="text" nzSize="large">
-      <i nz-icon nzType="icons:credit-card"></i>
+<ng-container *ngIf="user$ | async as user; else loadingTemplate">
+  <header class="flex justify-between mb-5">
+    <button nz-button nzType="text" class="font-bold space-x-3">
+      <span
+        class="w-2 h-2 rounded-full inline-block bg-primary-500 mb-[1px]"
+      ></span>
+      Ronin Wallet
     </button>
-    <p>Deposit</p>
-  </li>
-
-  <li>
-    <button nz-button nzType="text" nzSize="large">
-      <i nz-icon nzType="icons:send"></i>
+    <button
+      nz-button
+      nzType="text"
+      class="font-bold space-x-3 icon-large"
+      (click)="onLogout()"
+    >
+      <i nz-icon nzType="icons:person" class="text-primary-500"></i>
     </button>
-    <p>Send</p>
-  </li>
+  </header>
 
-  <li class="disabled">
-    <button nz-button nzType="text" nzSize="large">
-      <i nz-icon nzType="icons:repeat"></i>
-    </button>
-    <p>Swap</p>
-  </li>
-</ul>
+  <main class="flex flex-wrap justify-center gap-8 sm:flex-nowrap">
+    <section class="max-w-sm">
+      <ronin-credit-card
+        address="7300 3777 3888 3334"
+        [balance]="1000"
+        class="mb-7"
+      ></ronin-credit-card>
 
-<section>
-  <h3>Assets</h3>
-  <ol>
-    <li class="flex items-center px-5 py-4 space-x-4 bg-gray-50 rounded-lg">
-      <img src="assets/currencies/eur.png" alt="EUR currency" class="w-8 h-8" />
-      <div>
-        <strong class="leading-5 mb-1">50 EUR</strong>
-        <p class="text-gray-500">1,531,972 VND</p>
-      </div>
-    </li>
-  </ol>
-</section>
+      <ul class="actions flex justify-center space-x-4">
+        <li class="disabled">
+          <button nz-button nzType="text" nzSize="large">
+            <i nz-icon nzType="icons:credit-card"></i>
+          </button>
+          <p>Deposit</p>
+        </li>
+
+        <li>
+          <button nz-button nzType="text" nzSize="large">
+            <i nz-icon nzType="icons:send"></i>
+          </button>
+          <p>Send</p>
+        </li>
+
+        <li class="disabled">
+          <button nz-button nzType="text" nzSize="large">
+            <i nz-icon nzType="icons:repeat"></i>
+          </button>
+          <p>Swap</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="w-full">
+      <h3>Assets</h3>
+      <ol>
+        <li
+          class="flex items-center px-5 py-4 mb-3 space-x-4 bg-gray-50 rounded-lg"
+          *ngFor="let currency of user.currencies"
+        >
+          <img
+            src="assets/currencies/{{ currency.currency.code | lowercase }}.png"
+            alt="{{ currency.currency.code }} currency"
+            class="w-8 h-8"
+          />
+          <div>
+            <strong class="leading-5 mb-1"
+              >{{ currency.balance }} {{ currency.currency.code }}</strong
+            >
+            <p class="text-gray-500">
+              {{
+                currency.balance | roninCurrency: currency.currency.code | async
+              }}
+            </p>
+          </div>
+        </li>
+      </ol>
+    </section>
+  </main>
+</ng-container>
+
+<ng-template #loadingTemplate>
+  <nz-skeleton *ngFor="let i of [0, 1]"></nz-skeleton>
+</ng-template>

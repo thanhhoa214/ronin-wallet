@@ -34,7 +34,6 @@ export class AuthState {
 
   @Action(Login, { cancelUncompleted: true })
   Login({ patchState }: StateContext<StateModel>, { params }: Login) {
-    console.warn(params);
     const errorMessage = 'Login has been errored. Please try again later';
     return this.authService.login(params).pipe(
       tap(({ data: user }) => {

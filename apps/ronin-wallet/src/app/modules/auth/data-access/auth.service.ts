@@ -14,8 +14,4 @@ export class AuthService {
       params
     );
   }
-
-  logout() {
-    localStorage.clear();
-  }
 }

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { Logout } from '../../../auth/data-access';
+import { AuthState, Logout } from '../../../auth/data-access';
 
 @Component({
   selector: 'ronin-home',
@@ -8,6 +8,8 @@ import { Logout } from '../../../auth/data-access';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
+  user$ = this.store.select(AuthState.user);
+
   constructor(private store: Store) {}
 
   onLogout() {

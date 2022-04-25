@@ -13,7 +13,9 @@
 
 <main class="relative">
   <strong class="block h1 !mb-1 text-white">{{ balance }} USD</strong>
-  <span class="text-primary-200 font-semibold">{{ balance }} VND</span>
+  <span class="text-primary-200 font-semibold">{{
+    balance | roninCurrency: 'USD' | async
+  }}</span>
 
   <img
     src="assets/logo-white.svg"
