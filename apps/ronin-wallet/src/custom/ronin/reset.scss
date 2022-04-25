@@ -1,5 +1,5 @@
-
-h1 {
+h1,
+.h1 {
   @apply text-[32px] leading-10 font-bold mb-4;
 }
 
@@ -8,7 +8,7 @@ h2 {
 }
 
 h3 {
-  @apply text-2xl font-bold mb-3;
+  @apply text-base leading-5 font-bold mb-3;
 }
 
 h4 {
@@ -17,7 +17,11 @@ h4 {
 
 // Tailwind overide
 
-.border, .border-t, .border-b, .border-l, .border-r {
+.border,
+.border-t,
+.border-b,
+.border-l,
+.border-r {
   @apply border-solid;
 }
 

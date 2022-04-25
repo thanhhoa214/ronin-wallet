@@ -1,8 +1,15 @@
 .ant-btn-primary {
-  @apply border-none;
-  background-image: linear-gradient(to left, #1c94f4, #1273ea);
+  @apply border-none bg-ronin-gradient;
+}
+
+.ant-btn-text {
+  @apply bg-gray-50;
 }
 
 .ant-btn .anticon-loading {
   vertical-align: 0.13rem;
+}
+
+.icon-large .anticon {
+  @apply scale-150;
 }
