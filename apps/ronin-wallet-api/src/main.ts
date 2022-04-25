@@ -18,7 +18,7 @@ app.get<void, CurrenciesResponse>('/currencies', (_, res) => {
   res.send({ data: currencies });
 });
 
-const port = process.env.port || 80;
+const port = process.env.port || 3333;
 const server = app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
 });
