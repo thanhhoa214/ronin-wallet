@@ -1,16 +1,14 @@
 {
   "name": "Ronin Wallet",
   "version": "1.0",
-  "description": "Transfer your many with low fee than ever",
+  "description": "A wallet for Sky Mavis's Ronin sidechain. Ronin Wallet is your boarding pass to a new digital nation. Manage your digital identity and experience 100% true ownership of your assets. Send transactions without paying expensive gas fees",
   "manifest_version": 3,
   "permissions": ["scripting"],
   "action": {
     "default_popup": "index.html"
   },
   "icons": {
-    "16": "/assets/logo.svg",
-    "32": "/assets/logo.svg",
-    "48": "/assets/logo.svg",
-    "128": "/assets/logo.svg"
+    "16": "favicon-16x16.png",
+    "32": "favicon-32x32.png"
   }
 }

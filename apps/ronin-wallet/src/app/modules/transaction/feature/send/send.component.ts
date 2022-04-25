@@ -1,13 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Store } from '@ngxs/store';
+import {
+  ActionCompletion,
+  Actions,
+  ofActionSuccessful,
+  Store,
+} from '@ngxs/store';
 import { User, UserCurrency } from '@ronin-wallet/types';
+import { NotificationDialogComponent } from '../../../../ui/notification-dialog/notification-dialog.component';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { takeUntil, filter } from 'rxjs';
 import { DestroyService } from '../../../../util/services/destroy.service';
 import { AuthState } from '../../../auth/data-access';
 import { Send } from '../../data-access';
 import { CurrencySelectComponent } from '../../ui/currency-select/currency-select.component';
+import { formatNumber } from '@angular/common';
 
 @Component({
   templateUrl: './send.component.html',
@@ -41,6 +48,7 @@ export class SendComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private store: Store,
+    private actions: Actions,
     private modalService: NzModalService,
     private destroy$: DestroyService
   ) {}
@@ -61,6 +69,26 @@ export class SendComponent implements OnInit {
             from: user.walletAddress,
           });
         }
+      });
+
+    this.actions
+      .pipe(ofActionSuccessful(Send))
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        this.modalService.create({
+          nzContent: NotificationDialogComponent,
+          nzComponentParams: {
+            title: 'Successfully sent',
+            message: `Your <strong>${formatNumber(
+              this.form.get('amount')?.value || 0,
+              'en-US',
+              '1.0-2'
+            )} EUR</strong> has been sent!<br/>Thank you for using our service`,
+          },
+          nzWidth: '336px',
+          nzFooter: null,
+          nzBodyStyle: { padding: '24px 20px 22px', borderRadius: '1rem' },
+        });
       });
   }
 

@@ -1,13 +1,11 @@
 html {
   position: relative;
-  min-height: 430px;
+  min-height: 350px;
 }
 
 body {
   margin: 0;
-  font-family: Roboto, “Helvetica Neue”, sans-serif;
-  width: 400px;
-  height: 430px !important;
+  width: 375px;
+  height: 350px !important;
   overflow-y: scroll;
-  overflow-x: scroll;
 }

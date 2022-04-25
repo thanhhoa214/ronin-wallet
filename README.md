@@ -2,6 +2,7 @@
 
 ## Hosting
 - Deployed: https://stg-kpsportal.kpsmall.com.vn/
+- API: Have a deployment issue
 
 ## Technologies
 
@@ -29,34 +30,42 @@ Architecture strategy [Module as library](https://nx.dev/structure/library-types
 
 ```
 📦  root
- ┣ 📂 src   - Project source code root folder, contains all codes used to build and run our app
- ┃ ┣ 📂 app
- ┃ ┃ ┣ 📂 features - Contains all feature modules (auth, product, category, ...)
- ┃ ┃ ┃ ┣ 📂 base - (technical important modules:  library-custom modules, state management root module, api root module, ...)
- ┃ ┃ ┃ ┣ 📂 auth
- ┃ ┃ ┃ ┃ ┣ 📂 feature (pages in module)
- ┃ ┃ ┃ ┃ ┃ ┣ 📂 login
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📃 login.component.html
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📃 login.component.scss
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📃 login.component.ts
- ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📃 login.module.ts
- ┃ ┃ ┃ ┃ ┣ 📂 util (specific utils for modules: guards, services, validators, ...)
- ┃ ┃ ┃ ┃ ┃ ┣ 📃 routes.ts - Includes all routes for modules
- ┃ ┃ ┃ ┃ ┣ 📂 ui (dialog, dump or small constructive components for used in feature)
- ┃ ┃ ┃ ┃ ┣ 📂 data-access (store - state management for auth)
- ┃ ┃ ┃ ┃ ┃ ┣ 📃 actions.ts
- ┃ ┃ ┃ ┃ ┃ ┣ 📃 state.ts
- ┃ ┃ ┃ ┃ ┃ ┣ 📃 state.model.ts
- ┃ ┃ ┃ ┃ ┃ ┣ 📃 data-access.module.ts
- ┃ ┃ ┃ ┣ 📂 product, category, and business-logical modules
- ┃ ┃ ┣ 📂 data-access - Contains API & data stuff (services, models, ...)
- ┃ ┃ ┣ 📂 ui - Contains the shared dump components which being reused
- ┃ ┃ ┣ 📂 util - Contains the shared utilities (functions, directives, pipes, services, interceptors, ...)
- ┃ ┣ 📂 assets - Contains static files (fonts, icons, images, translations, ...)
- ┃ ┣ 📂 custom - Contains library custom & theming SCSS
- ┃ ┣ 📂 environments
- ┃ ┣ 📜 styles.scss - global styles of the app
- ┣ 📜 angular.json
+ ┣ 📃 nx.json - Configurations for entire repo
+ ┣ 📂 libs - Contains all libs
+ ┣ 📂 apps - Contains all applications
+ ┃ ┣ 📂 ronin-wallet-e2e - E2E Testing project for ronin-wallet (not implemented)
+ ┃ ┣ 📂 ronin-wallet-api - Simple API for ronin-wallet
+ ┃ ┣ 📂 ronin-wallet     - FE Application (web + extension)
+ ┃ ┃ ┣ 📜 project.json - Configuration file for Angular app aka angular.json in normal initialization using `ng new`
+ ┃ ┃ ┣ 📂 src
+ ┃ ┃ ┃ ┣ 📂 environments
+ ┃ ┃ ┃ ┣ 📂 assets - Contains static files (fonts, icons, images, translations, ...)
+ ┃ ┃ ┃ ┣ 📂 custom - Contains library custom & theming SCSS
+ ┃ ┃ ┃ ┣ 📜 theme.less - Theming for ng-zorro by less variables
+ ┃ ┃ ┃ ┣ 📜 styles.scss - global styles of the app
+ ┃ ┃ ┃ ┣ 📂 app
+ ┃ ┃ ┃ ┃ ┣ 📂 data-access - Contains API & data stuff (services, models, ...)
+ ┃ ┃ ┃ ┃ ┣ 📂 ui - Contains the shared dump components which being reused
+ ┃ ┃ ┃ ┃ ┣ 📂 util - Contains the shared utilities (functions, directives, pipes, services, interceptors, ...)
+ ┃ ┃ ┃ ┃ ┣ 📂 modules - Contains all feature modules (auth, product, category, ...)
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂 base - (technical important modules:  library-custom modules, state management root module, ...)
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂 auth
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂 feature (pages in module)
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂 login
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📃 login.component.html
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📃 login.component.scss
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📃 login.component.ts
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📃 login.module.ts
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂 util (specific utils for modules: guards, services, validators, ...)
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📃 routes.ts - Includes all routes for modules
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂 ui (dialog, dump or small constructive components for used in feature)
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📂 data-access (store - state management for auth)
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📃 api.service.ts (optional - will be auto-sync over Swagger when apply to well-construct backed API)
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📃 actions.ts
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📃 state.ts
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📃 state.model.ts
+ ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📃 data-access.module.ts
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂 product, category, and business-logical modules
 ```
 
 ## Installation

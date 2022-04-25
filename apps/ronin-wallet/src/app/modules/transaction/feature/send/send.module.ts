@@ -11,6 +11,7 @@ import { CurrencySelectModule } from '../../ui/currency-select/currency-select.m
 import { AddressTruncatePipeModule } from '../../util/pipes/address-truncate/address-truncate.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { TransactionDataAccessModule } from '../../data-access';
+import { NotificationDialogModule } from '../../../../ui/notification-dialog/notification-dialog.module';
 
 const nzModules = [NzFormModule, NzInputModule, NzInputNumberModule];
 
@@ -25,6 +26,7 @@ const nzModules = [NzFormModule, NzInputModule, NzInputNumberModule];
     CurrencySelectModule,
     AddressTruncatePipeModule,
     TransactionDataAccessModule,
+    NotificationDialogModule,
     nzModules,
   ],
 })

@@ -1,0 +1,7 @@
+<h3 class="text-xl font-bold text-center">{{ title }}</h3>
+
+<p [innerHTML]="message" class="text-gray-900"></p>
+
+<button nz-button nzType="primary" nzSize="large" (click)="nzModalRef.close()" nzBlock>
+  {{ okLabel }}
+</button>

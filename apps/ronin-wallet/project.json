@@ -64,6 +64,12 @@
           "outputHashing": "all"
         },
         "extension-production": {
+          "optimization": {
+            "styles": {
+              "minify": true,
+              "inlineCritical": false
+            }
+          },
           "assets": [
             "apps/ronin-wallet/src/assets",
             {

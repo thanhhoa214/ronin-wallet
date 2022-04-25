@@ -9,7 +9,12 @@ import { AuthState } from '../auth/data-access';
 @NgModule({
   declarations: [],
   imports: [
-    NgxsModule.forRoot([], { developmentMode: !environment.production }),
+    NgxsModule.forRoot([], {
+      developmentMode: !environment.production,
+      compatibility: {
+        strictContentSecurityPolicy: true,
+      },
+    }),
     NgxsStoragePluginModule.forRoot({ key: [AuthState] }),
     environment.production
       ? []
