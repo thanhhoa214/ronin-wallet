@@ -63,6 +63,50 @@
           ],
           "outputHashing": "all"
         },
+        "extension-production": {
+          "assets": [
+            "apps/ronin-wallet/src/assets",
+            {
+              "glob": "**/*",
+              "input": "apps/ronin-wallet/src/assets/favicon-pack",
+              "output": "/"
+            },
+            {
+              "glob": "**/*",
+              "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+              "output": "/assets/"
+            },
+            {
+              "glob": "manifest.json",
+              "input": "apps/ronin-wallet/src/assets/chrome-extension",
+              "output": "/"
+            }
+          ],
+          "styles": [
+            "apps/ronin-wallet/src/theme.less",
+            "apps/ronin-wallet/src/styles.scss",
+            "apps/ronin-wallet/src/assets/chrome-extension/chrome-extention.css"
+          ],
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1.5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/ronin-wallet/src/environments/environment.ts",
+              "with": "apps/ronin-wallet/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
         "development": {
           "buildOptimizer": false,
           "optimization": false,
