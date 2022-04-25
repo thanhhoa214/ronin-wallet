@@ -25,7 +25,7 @@ export const currencies: Currency[] = [
 ];
 
 export const user: User = {
-  walletAddress: '0x0234576523423',
+  walletAddress: '7300 3777 3888 3334',
   currencies: [
     {
       balance: 1000,

@@ -1,5 +1,7 @@
+import { SupportedCurrency } from '../apis';
+
 export interface Currency {
-  code: string;
+  code: SupportedCurrency;
   exchangeRate: {
     VND: number;
     USD: number;
