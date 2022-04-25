@@ -4,15 +4,18 @@
 
   <i
     nz-icon
-    nzType="icons:copy"
+    nzType="{{ isCopied ? 'check-circle' : 'icons:copy' }}"
     [cdkCopyToClipboard]="address"
-    class="text-white text-xl leading-4 ml-auto cursor-pointer"
-    nz-tooltip="Copy address"
+    class="text-white text-xl leading-4 ml-auto cursor-pointer transition-transform hover:scale-125"
+    nz-tooltip="{{ isCopied ? 'Copied' : 'Copy address' }}"
+    (click)="onCopy()"
   ></i>
 </header>
 
 <main class="relative">
-  <strong class="block h1 !mb-1 text-white">{{ balance }} USD</strong>
+  <strong class="block h1 !mb-1 text-white"
+    >{{ balance | number: '1.0-2':'en-US' }} USD</strong
+  >
   <span class="text-primary-200 font-semibold">{{
     balance | roninCurrency: 'USD' | async
   }}</span>

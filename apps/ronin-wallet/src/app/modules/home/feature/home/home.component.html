@@ -61,9 +61,10 @@
             class="w-8 h-8"
           />
           <div>
-            <strong class="leading-5 mb-1"
-              >{{ currency.balance }} {{ currency.currency.code }}</strong
-            >
+            <strong class="leading-5 mb-1">
+              {{ currency.balance | number: '1.0-2':'en-US' }}
+              {{ currency.currency.code }}
+            </strong>
             <p class="text-gray-500">
               {{
                 currency.balance | roninCurrency: currency.currency.code | async

@@ -11,7 +11,8 @@
   }
 
   button {
-    @apply font-bold space-x-3 w-12 h-12 text-primary-500;
+    @apply font-bold space-x-3 w-12 h-12 text-primary-500 transition-transform;
+    @apply hover:shadow-lg hover:bg-gray-100 hover:scale-110;
 
     .anticon {
       @apply text-3xl;
