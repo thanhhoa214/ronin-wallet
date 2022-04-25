@@ -1,94 +1,74 @@
+# Ronin-wallet Front-end & API
 
+## Hosting
+- Deployed: https://stg-kpsportal.kpsmall.com.vn/
 
-# Ronin
+## Technologies
 
-This project was generated using [Nx](https://nx.dev).
+### FE App
+- [Angular](https://angular.io/) (v13+)
+- [ng-zorro](https://ng.ant.design/) for utilizing beautiful, on-the-fly and rich UI library.
+- [TailwindCSS](https://tailwindcss.com/) for quickly customizing through utility-first classes.
+- [NGXS](https://www.ngxs.io/) for state management.
+- [Eslint](https://eslint.org/) and [Prettier](https://prettier.io/) for enhancing productivity and maintainability.
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+### API App
+- [Express](https://expressjs.com/)
 
-🔎 **Smart, Fast and Extensible Build System**
+## General Folder Structure
 
-## Adding capabilities to your workspace
+Architecture strategy [Module as library](https://nx.dev/structure/library-types#library-types) and [Single Component Angular Module](https://github.com/angular/angular/discussions/43784) to gain lots of advantages:
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+- Inherit effective module-based architecture from Angular official recommendation
+- Separate concerns between kinds of things, reduces dependent relations between modules
+- Prevents heavy-based on old shared module strategy
+- Prevents from uncountable meaningless folder
+- Prevents too much-nested component
+- Enhance awareness and scalability
+- Utilize tree-shaking and lazy-load module
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+```
+📦  root
+ ┣ 📂 src   - Project source code root folder, contains all codes used to build and run our app
+ ┃ ┣ 📂 app
+ ┃ ┃ ┣ 📂 features - Contains all feature modules (auth, product, category, ...)
+ ┃ ┃ ┃ ┣ 📂 base - (technical important modules:  library-custom modules, state management root module, api root module, ...)
+ ┃ ┃ ┃ ┣ 📂 auth
+ ┃ ┃ ┃ ┃ ┣ 📂 feature (pages in module)
+ ┃ ┃ ┃ ┃ ┃ ┣ 📂 login
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📃 login.component.html
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📃 login.component.scss
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📃 login.component.ts
+ ┃ ┃ ┃ ┃ ┃ ┃ ┣ 📃 login.module.ts
+ ┃ ┃ ┃ ┃ ┣ 📂 util (specific utils for modules: guards, services, validators, ...)
+ ┃ ┃ ┃ ┃ ┃ ┣ 📃 routes.ts - Includes all routes for modules
+ ┃ ┃ ┃ ┃ ┣ 📂 ui (dialog, dump or small constructive components for used in feature)
+ ┃ ┃ ┃ ┃ ┣ 📂 data-access (store - state management for auth)
+ ┃ ┃ ┃ ┃ ┃ ┣ 📃 actions.ts
+ ┃ ┃ ┃ ┃ ┃ ┣ 📃 state.ts
+ ┃ ┃ ┃ ┃ ┃ ┣ 📃 state.model.ts
+ ┃ ┃ ┃ ┃ ┃ ┣ 📃 data-access.module.ts
+ ┃ ┃ ┃ ┣ 📂 product, category, and business-logical modules
+ ┃ ┃ ┣ 📂 data-access - Contains API & data stuff (services, models, ...)
+ ┃ ┃ ┣ 📂 ui - Contains the shared dump components which being reused
+ ┃ ┃ ┣ 📂 util - Contains the shared utilities (functions, directives, pipes, services, interceptors, ...)
+ ┃ ┣ 📂 assets - Contains static files (fonts, icons, images, translations, ...)
+ ┃ ┣ 📂 custom - Contains library custom & theming SCSS
+ ┃ ┣ 📂 environments
+ ┃ ┣ 📜 styles.scss - global styles of the app
+ ┣ 📜 angular.json
+```
 
-Below are our core plugins:
+## Installation
 
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
-
-There are also many [community plugins](https://nx.dev/community) you could add.
-
-## Generate an application
-
-Run `nx g @nrwl/react:app my-app` to generate an application.
-
-> You can use any of the plugins above to generate applications as well.
-
-When using Nx, you can create multiple applications and libraries in the same workspace.
-
-## Generate a library
-
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
-
-> You can also use any of the plugins above to generate libraries as well.
-
-Libraries are shareable across libraries and applications. They can be imported from `@ronin/mylib`.
+Run `npm i` for installing all dependencies for development or bundle your app
 
 ## Development server
 
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
+Run `npm start` for a FE server at `http://localhost:4200/` and a API server at `http://localhost:3333/`. Both the apps will automatically reload if you change any of the source files.
 
 ## Build
 
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `nx e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev) to learn more.
-
-
-
-## ☁ Nx Cloud
-
-### Distributed Computation Caching & Distributed Task Execution
-
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
+The build artifacts will be stored in the `dist/` directory.
+- FE app: `nx build ronin-wallet`
+- API app: `nx build ronin-wallet-api`
