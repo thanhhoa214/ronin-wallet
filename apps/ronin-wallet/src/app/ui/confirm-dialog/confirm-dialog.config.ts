@@ -18,6 +18,6 @@ export const CONFIRM_DIALOG_MODAL_CONFIG: ModalOptions = {
   nzClassName: 'confirm-dialog',
   nzOkDanger: true,
   nzCloseIcon: 'close-circle',
-  nzCancelText: 'Huỷ',
-  nzOkText: 'Đồng ý'
+  nzCancelText: 'Cancel',
+  nzOkText: 'Sign out',
 };

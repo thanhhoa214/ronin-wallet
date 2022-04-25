@@ -59,11 +59,10 @@ export class AuthState {
       return this.nzModalService.create({
         nzContent: ConfirmDialogComponent,
         nzComponentParams: {
-          title: 'Đăng xuất',
-          message: `Bạn có chắc chắn muốn đăng xuất?`,
+          title: 'Sign out the account?',
+          message: `All saved, are you sure to sign out the account?`,
         },
         ...CONFIRM_DIALOG_MODAL_CONFIG,
-        nzOkText: 'Đăng xuất',
         nzOnOk: successCallback,
       });
     return successCallback();
