@@ -1,0 +1,13 @@
+<header class="pt-6 pb-4 text-center font-bold border-b border-gray-200">
+  Assets
+</header>
+
+<ol *ngIf="user$ | async as user" class="h-[60vh] overflow-auto py-2">
+  <ronin-currency-item
+    *ngFor="let currency of user.currencies"
+    [currency]="currency"
+    (click)="nzModalRef.close(currency)"
+    class="cursor-pointer hover:bg-gray-100"
+    [class.bg-primary-50]="selectedCurrencyCode === currency.currency.code"
+  ></ronin-currency-item>
+</ol>
