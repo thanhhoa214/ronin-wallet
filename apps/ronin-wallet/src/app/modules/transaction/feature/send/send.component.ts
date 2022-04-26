@@ -22,6 +22,7 @@ export class SendComponent implements OnInit {
     amount: [0],
   });
   user?: User;
+  isSending = false;
 
   get currency(): UserCurrency | undefined {
     return this._currency;
@@ -70,6 +71,7 @@ export class SendComponent implements OnInit {
       .pipe(ofActionSuccessful(Send))
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
+        this.isSending = false;
         this.modalService.create({
           nzContent: NotificationDialogComponent,
           nzComponentParams: {
@@ -115,6 +117,7 @@ export class SendComponent implements OnInit {
     if (!this.form.valid || !this.currency) return;
     const { to, amount } = this.form.value;
 
+    this.isSending = true;
     this.store.dispatch(
       new Send({
         receiverAddress: to,
