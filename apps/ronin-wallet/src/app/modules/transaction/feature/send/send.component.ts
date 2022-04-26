@@ -59,7 +59,14 @@ export class SendComponent implements OnInit {
       .subscribe((user) => {
         if (user) {
           this.user = user;
-          this.currency = user.currencies[0];
+          
+          if (this.currency) {
+            this.currency = this.user.currencies.find(
+              (c) => c.currency.code === this.currency?.currency.code
+            );
+          } else {
+            this.currency = user.currencies[0];
+          }
 
           this.form.patchValue({
             from: user.walletAddress,
@@ -80,7 +87,9 @@ export class SendComponent implements OnInit {
               this.form.get('amount')?.value || 0,
               'en-US',
               '1.0-2'
-            )} EUR</strong> has been sent!<br/>Thank you for using our service`,
+            )} ${
+              this.currency?.currency.code
+            }</strong> has been sent!<br/>Thank you for using our service`,
           },
           nzWidth: '336px',
           nzFooter: null,
