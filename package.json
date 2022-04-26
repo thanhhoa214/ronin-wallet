@@ -4,8 +4,9 @@
   "license": "MIT",
   "scripts": {
     "start": "port=3333 npx nx run-many --target=serve --projects=ronin-wallet,ronin-wallet-api",
-    "build": "nx build --project=ronin-wallet-api",
-    "start:api": "node dist/apps/ronin-wallet-api/main.js",
+    "build:ronin-wallet": "nx build --project=ronin-wallet",
+    "build:ronin-wallet:extension": "nx build ronin-wallet -c=extension-production",
+    "build:ronin-wallet-api": "nx build --project=ronin-wallet-api",
     "test": "nx test",
     "postinstall": "ngcc --properties es2015 browser module main"
   },
@@ -68,6 +69,7 @@
     "prettier": "^2.5.1",
     "tailwindcss": "^3.0.2",
     "ts-jest": "27.1.4",
-    "typescript": "~4.6.2"
+    "typescript": "~4.6.2",
+    "webpack-bundle-analyzer": "^4.5.0"
   }
 }

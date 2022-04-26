@@ -1,7 +1,7 @@
 # Ronin-wallet Front-end & API
 
 ## Hosting
-- Deployed: https://stg-kpsportal.kpsmall.com.vn/
+- Deployed: https://ronin-challenge.netlify.app/
 - API: Have a deployment issue
 
 ## Technologies
@@ -12,6 +12,7 @@
 - [TailwindCSS](https://tailwindcss.com/) for quickly customizing through utility-first classes.
 - [NGXS](https://www.ngxs.io/) for state management.
 - [Eslint](https://eslint.org/) and [Prettier](https://prettier.io/) for enhancing productivity and maintainability.
+- [webpack-bundle-analyzer](https://www.npmjs.com/package/webpack-bundle-analyzer) Visualize size of webpack output files with an interactive zoomable treemap for help investigate to reduce the initial bundle size
 
 ### API App
 - [Express](https://expressjs.com/)
@@ -78,6 +79,7 @@ Run `npm start` for a FE server at `http://localhost:4200/` and a API server at 
 
 ## Build
 
-The build artifacts will be stored in the `dist/` directory.
-- FE app: `nx build ronin-wallet`
-- API app: `nx build ronin-wallet-api`
+The build artifacts will be stored in the `dist/apps` directory.
+- FE app: `npm run build:ronin-wallet`
+- FE app as a Chrome extension: `npm run build:ronin-wallet:extension`
+- API app: `npm run build:ronin-wallet-api`
