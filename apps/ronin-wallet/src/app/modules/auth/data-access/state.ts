@@ -39,8 +39,7 @@ export class AuthState {
         if (!user) throw new Error(errorMessage);
         patchState({ user });
       }),
-      catchError((error) => {
-        console.warn(error);
+      catchError(() => {
         return throwError(() => new Error(errorMessage));
       })
     );

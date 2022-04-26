@@ -4,7 +4,7 @@ import { STATE_NAME, INITIAL_STATE } from './state.model';
 import { Send } from './actions';
 import { AuthState, SaveProfile } from '../../auth/data-access';
 import produce from 'immer';
-import { map, take, tap, timer } from 'rxjs';
+import { take, tap, timer } from 'rxjs';
 
 @State<Record<never, never>>({
   name: STATE_NAME,

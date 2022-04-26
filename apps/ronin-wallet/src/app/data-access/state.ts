@@ -37,8 +37,7 @@ export class CoreState implements NgxsOnInit {
         if (!currencies) throw new Error(errorMessage);
         patchState({ currencies });
       }),
-      catchError((error) => {
-        console.warn(error);
+      catchError(() => {
         return throwError(() => new Error(errorMessage));
       })
     );
