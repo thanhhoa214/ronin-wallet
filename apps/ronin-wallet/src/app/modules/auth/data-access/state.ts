@@ -8,7 +8,6 @@ import { throwError } from 'rxjs';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { AuthService } from './auth.service';
 import { ConfirmDialogComponent } from '../../../ui/confirm-dialog/confirm-dialog.component';
-import { CONFIRM_DIALOG_MODAL_CONFIG } from '../../../ui/confirm-dialog/confirm-dialog.config';
 
 @State<StateModel>({
   name: STATE_NAME,
@@ -59,9 +58,12 @@ export class AuthState {
         nzContent: ConfirmDialogComponent,
         nzComponentParams: {
           title: 'Sign out the account?',
-          message: `All saved, are you sure to sign out the account?`,
+          message: `All thinsgs saved, sign out current account?`,
         },
-        ...CONFIRM_DIALOG_MODAL_CONFIG,
+        nzWidth: '336px',
+        nzOkDanger: true,
+        nzCancelText: 'Cancel',
+        nzOkText: 'Sign out',
         nzOnOk: successCallback,
       });
     return successCallback();

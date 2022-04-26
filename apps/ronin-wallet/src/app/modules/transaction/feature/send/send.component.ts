@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import {
-  ActionCompletion,
-  Actions,
-  ofActionSuccessful,
-  Store,
-} from '@ngxs/store';
+import { Actions, ofActionSuccessful, Store } from '@ngxs/store';
 import { User, UserCurrency } from '@ronin-wallet/types';
 import { NotificationDialogComponent } from '../../../../ui/notification-dialog/notification-dialog.component';
 import { NzModalService } from 'ng-zorro-antd/modal';

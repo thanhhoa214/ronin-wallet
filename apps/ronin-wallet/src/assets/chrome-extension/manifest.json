@@ -2,13 +2,8 @@
   "manifest_version": 3,
   "name": "Ronin Wallet",
   "version": "1.0",
+  "author": "Hoa Nguyen (Rin)",
   "description": "A wallet for Sky Mavis's Ronin sidechain. Ronin Wallet is your boarding pass to a new digital nation. Manage your digital identity and experience 100% true ownership of your assets. Send transactions without paying expensive gas fees",
-  "authors": [
-    {
-      "name": "Hoa Nguyen (Rin)",
-      "email": "thanhthanhhoa123@gmail.com"
-    }
-  ],
   "homepage_url": "https://ronin-challenge.netlify.app/",
   "permissions": ["scripting"],
   "action": {
