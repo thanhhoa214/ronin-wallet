@@ -42,7 +42,9 @@ Architecture strategy [Module as library](https://nx.dev/structure/library-types
  ┃ ┃ ┃ ┣ 📂 environments
  ┃ ┃ ┃ ┣ 📂 assets - Contains static files (fonts, icons, images, translations, ...)
  ┃ ┃ ┃ ┣ 📂 custom - Contains library custom & theming SCSS
- ┃ ┃ ┃ ┣ 📜 theme.less - Theming for ng-zorro by less variables
+ ┃ ┃ ┃ ┃ ┣ 📂 ng-zorro - Contains override styles for ng-zorro components
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜 theme.less - Theming for ng-zorro by less variables (Currently ng-zorro-antd only permits configs through less variables)
+ ┃ ┃ ┃ ┃ ┣ 📂 ronin - Contains reset, custom styles for the app
  ┃ ┃ ┃ ┣ 📜 styles.scss - global styles of the app
  ┃ ┃ ┃ ┣ 📂 app
  ┃ ┃ ┃ ┃ ┣ 📂 data-access - Contains API & data stuff (services, models, ...)

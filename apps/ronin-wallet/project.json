@@ -36,7 +36,7 @@
           }
         ],
         "styles": [
-          "apps/ronin-wallet/src/theme.less",
+          "apps/ronin-wallet/src/custom/ng-zorro/theme.less",
           "apps/ronin-wallet/src/styles.scss"
         ],
         "scripts": []
@@ -90,7 +90,7 @@
             }
           ],
           "styles": [
-            "apps/ronin-wallet/src/theme.less",
+            "apps/ronin-wallet/src/custom/ng-zorro/theme.less",
             "apps/ronin-wallet/src/styles.scss",
             "apps/ronin-wallet/src/assets/chrome-extension/chrome-extention.css"
           ],
