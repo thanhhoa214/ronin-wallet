@@ -1,7 +1,8 @@
 # Ronin-wallet Front-end & API
 
 ## Hosting
-- Deployed: https://ronin-challenge.netlify.app/
+- Interactive playground: https://ronin-challenge.netlify.app/
+- Demo record: [here](https://github.com/thanhhoa214/ronin-wallet/blob/main/result-record.mov)
 - API: Have a deployment issue
 
 ## Technologies
